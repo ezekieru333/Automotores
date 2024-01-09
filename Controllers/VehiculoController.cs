@@ -48,5 +48,24 @@ namespace Automotores.Controllers
         }
 
         [HttpPut("{id}")]
+        public async Task<ActionResult<VehiculoDto>> Update(int id,  VehiculoUpdateDto vehiculoUpdateDto)
+        {
+            var validationResult = await _vehiculoUpdateValidator.ValidateAsync(vehiculoUpdateDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
+            var vehiculoDto = await _vehiculoService.Update(id, vehiculoUpdateDto);
+
+            return vehiculoDto == null ? NotFound() : Ok(vehiculoDto);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<VehiculoDto>> Delete(int id)
+        {
+            var vehiculoDto = await _vehiculoService.Delete(id);
+            return vehiculoDto == null ? NotFound() : Ok(vehiculoDto);
+        }
     }
 }

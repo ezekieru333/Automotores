@@ -8,8 +8,7 @@ namespace Automotores.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int TipoDocumentoId { get; set; }
-        [Column(TypeName = "bigint(20)")]
-        public BigInteger Documento { get; set; }
+        public int Documento { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public string Domicilio { get; set; }

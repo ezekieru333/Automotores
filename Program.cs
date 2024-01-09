@@ -1,5 +1,7 @@
 using Automotores.AutoMappers;
 using Automotores.DTOs;
+using Automotores.Models;
+using Automotores.Repository;
 using Automotores.Services;
 using Automotores.Validators;
 using FluentValidation;
@@ -10,8 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddKeyedScoped<ICommonService<VehiculoDto, VehiculoInsertDto, VehiculoUpdateDto>, VehiculoService>("vehiculoService");
 builder.Services.AddKeyedScoped<ICommonService<IndividuoDto, IndividuoInsertDto, IndividuoUpdateDto>, IndividuoService>("individuoService");
+
+//Repositories
+builder.Services.AddScoped<IRepository<Vehiculo>, VehiculoRepository>();
+builder.Services.AddScoped<IRepository<Individuo>, IndividuoRepository>();
+
 //Conexión Entity Framework
-builder.Services.AddDbContext<DbContext>(options =>
+builder.Services.AddDbContext<StoreContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Automotores"));
 });
