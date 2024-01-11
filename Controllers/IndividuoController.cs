@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Automotores.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class IndividuoController : ControllerBase
     {

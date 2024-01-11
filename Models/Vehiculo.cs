@@ -19,19 +19,19 @@ namespace Automotores.Models
         public string Color { get; set; }
         public int IndividuoId { get; set; }
 
-        [Column(TypeName = "decimal(10, 2")]
+        [Column(TypeName = "decimal(10, 2)")]
         public decimal PrecioRevista { get; set; }
 
-        [Column(TypeName = "decimal(10, 2")]
+        [Column(TypeName = "decimal(10, 2)")]
         public decimal PrecioToma { get; set; }
 
-        [Column(TypeName = "decimal(10, 2")]
+        [Column(TypeName = "decimal(10, 2)")]
         public decimal EntregaMinima { get; set; }
 
-        [Column(TypeName = "decimal(10,2")]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal PrecioVenta { get; set; }
 
-        [Column(TypeName = "decimal(10,2")]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal PrecioLista { get; set; }
         public int PrecioUSD { get; set; }
         public int EstadoId { get; set; }

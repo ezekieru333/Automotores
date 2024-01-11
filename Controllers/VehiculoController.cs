@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Automotores.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class VehiculoController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace Automotores.Controllers
 
         public VehiculoController(IValidator<VehiculoInsertDto> vehiculoInsertValdiator,
             IValidator<VehiculoUpdateDto> vehiculoUpdateValidator,
-            ICommonService<VehiculoDto, VehiculoInsertDto, VehiculoUpdateDto> vehiculoService)
+            [FromKeyedServices("vehiculoService")] ICommonService<VehiculoDto, VehiculoInsertDto, VehiculoUpdateDto> vehiculoService)
         {
             _vehiculoInsertValdiator = vehiculoInsertValdiator;
             _vehiculoUpdateValidator = vehiculoUpdateValidator;
@@ -33,7 +33,7 @@ namespace Automotores.Controllers
             => await _vehiculoService.GetById(id);
 
         [HttpPost]
-        async Task<ActionResult<VehiculoDto>> Add(VehiculoInsertDto vehiculoInsertDto)
+        public async Task<ActionResult<VehiculoDto>> Add(VehiculoInsertDto vehiculoInsertDto)
         {
             var validationResult = await _vehiculoInsertValdiator.ValidateAsync(vehiculoInsertDto);
 
@@ -61,7 +61,7 @@ namespace Automotores.Controllers
             return vehiculoDto == null ? NotFound() : Ok(vehiculoDto);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<VehiculoDto>> Delete(int id)
         {
             var vehiculoDto = await _vehiculoService.Delete(id);

@@ -9,7 +9,7 @@ namespace Automotores.DTOs
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int TipoDocumentoId { get; set; }
-        public BigInteger Documento { get; set; }
+        public int Documento { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public string Domicilio { get; set; }
