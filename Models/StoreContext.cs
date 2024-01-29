@@ -1,11 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Automotores.Models
 {
-    public class StoreContext : DbContext
+    public class StoreContext : IdentityDbContext //Se cambió DbContext por IdentityDbContext
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
 
+        //Agregado por sugerencia de
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
         public DbSet<Vehiculo> Vehiculos { get; set; }
         public DbSet<Individuo> Individuos { get; set; }
         public DbSet<Localidad> Localidades { get; set; }

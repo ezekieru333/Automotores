@@ -2,6 +2,7 @@
 using Automotores.Services;
 using Automotores.Validators;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Automotores.Controllers
 {
     [Route("api/[controller]s")]
     [ApiController]
+    [Authorize]
     public class VehiculoController : ControllerBase
     {
         private IValidator<VehiculoInsertDto> _vehiculoInsertValdiator;
@@ -29,6 +31,7 @@ namespace Automotores.Controllers
             => await _vehiculoService.Get();
 
         [HttpGet("{id}")]
+
         public async Task<VehiculoDto> GetById(int id)
             => await _vehiculoService.GetById(id);
 
